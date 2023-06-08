@@ -1,0 +1,11 @@
+.container{
+    border-radius: 27.907px;
+    border: none;
+    background: #36416A;
+    color: #fff;
+    font-size: 1rem;
+    padding: .5em 2em;
+}
+.container:hover{
+    opacity: .7;
+}

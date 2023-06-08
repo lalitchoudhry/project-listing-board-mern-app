@@ -1,0 +1,53 @@
+.container{
+    display: flex;
+    gap: 3%;
+    margin: .5em 0;
+}
+.input_section{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+.container label{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.container input:focus{
+    outline: none;
+}
+.container input{
+    width: 100%;
+    font-size: 1rem;
+    padding: .35em;
+    background: #FFFFFF;
+    border: none;
+    border-bottom: 2px solid #B6B6B6;
+}
+
+input:invalid[focused = 'true'] ~ span{
+    font-size: .8rem;
+    font-weight: 500;
+    color: rgb(250, 62, 62);
+    visibility: visible;
+}
+.span{
+    font-size: .8rem;
+    font-weight: 500;
+    color: rgb(250, 62, 62);
+    visibility: visible;
+}
+.error{
+    font-size: .8rem;
+    font-weight: 500;
+    color: rgb(250, 62, 62);
+    visibility: hidden;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}

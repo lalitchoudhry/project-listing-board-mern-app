@@ -1,0 +1,19 @@
+.container{
+    color: #FFFFFF;
+    margin: 1em;
+    width: 40%;
+}
+.container h1{
+    line-height: 78px;
+    font-weight: 500;
+}
+.container p{
+    line-height: 33px;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+    .container{
+        width: 80%;
+    }
+}
