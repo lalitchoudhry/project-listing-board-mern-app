@@ -11,3 +11,29 @@ html, body{
   height: 100%;
   width: 100%;
 }
+
+@media screen and (max-width: 900px){
+  html{
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 768px){
+  html{
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 450px){
+  html{
+    font-size: 11px;
+  }
+}
+@media screen and (max-width: 376px){
+  html{
+    font-size: 11px;
+  }
+}
+@media screen and (max-width: 321px){
+  html{
+    font-size: 9px;
+  }
+}

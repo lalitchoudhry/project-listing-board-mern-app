@@ -1,0 +1,29 @@
+.container{
+    position: relative;
+}
+.product_listing_section{
+    display: flex;
+    justify-content: space-between;
+    padding: 2em;
+}
+
+.product_box{
+    width: 75%;
+}
+
+.products_listing{
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center;
+    justify-content: center; */
+}
+
+@media screen and (max-width: 450px){
+    .product_listing_section{
+        padding: 1em;
+    }
+    .product_box{
+        width: 100%;
+    }
+}

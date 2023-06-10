@@ -1,0 +1,35 @@
+.container{
+    background-color: #36416A;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #FFFFFF;
+    padding: 1em;
+}
+.text{
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+.log_btn:hover{
+    text-decoration: underline;
+}
+.log_btn{
+    color: #FFFFFF;
+    text-decoration: none;
+    margin: 0 .5em;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.sign_btn:hover{
+    opacity: .7;
+}
+.sign_btn{
+    font-weight: 500;
+    font-size: 1rem;
+    color: #FFFFFF;
+    text-decoration: none;
+    border: 1px solid #FFFFFF;
+    border-radius: 8px;
+    padding: .2em .7em;
+    margin: 0 .5em;
+}

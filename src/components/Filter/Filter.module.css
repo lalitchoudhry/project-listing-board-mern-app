@@ -1,0 +1,61 @@
+.container{
+    width: 23%;
+}
+.text_section h1{
+    font-weight: 500;
+    font-size: 2.35rem;
+    line-height: 50px;
+}
+.text_section p{
+    font-weight: 700;
+    font-size: 1.2rem;
+    line-height: 147.2%;
+}
+.text_section{
+    background: #36416A;
+    border-radius: 14.8793px;
+    color: #FFFF;
+    padding: 1em;
+    height: 175px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 1em;
+}
+
+.filter_section{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 17.5051px rgba(0, 0, 0, 0.15);
+    border-radius: 11.3783px;
+}
+.filter_card{
+    margin: .4em;
+    padding: .2em 1em;
+    background: rgba(54, 65, 106, 0.15);
+    border-radius: 25.0428px;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 147.2%;
+    cursor: pointer;
+}
+.filter_card:hover{
+    background: #36416A;
+    color: #FFFFFF;
+}
+
+@media screen and (max-width: 450px){
+    .container{
+        width: 0%;
+    }
+    .text_section{
+        display: none;
+    }
+    .filter_section{
+        position: absolute;
+        bottom: 15%;
+        width: 94%;
+    }
+}

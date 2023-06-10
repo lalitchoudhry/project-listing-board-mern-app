@@ -1,0 +1,50 @@
+.container{
+    display: flex;
+    /* width: 100%; */
+    position: absolute;
+    top: 12%;
+    margin: 0 auto;
+    left: 15%;
+    background-color: #FFFFFF;
+    border: 2px solid
+}
+
+.add_product_form h1{
+    margin-bottom: 1em;
+}
+.add_product_form{
+    background-color: #FFFFFF;
+    padding: 2em;
+    width: 50%;
+}
+.feedback_banner{
+    background-color: #36416A;
+}
+
+.login_line{
+    font-size: .9rem;
+    color:#737373;
+    margin-bottom: 1em;
+}
+.login_line span{
+    color: #36416A;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 786px){
+    .container{
+        left: 12%;
+    }
+}
+@media screen and (max-width: 450px){
+    .container{
+        left: 4%;
+    }
+    .feedback_banner{
+        display: none;
+    }
+    .add_product_form{
+        width: 80vw;
+    }
+}

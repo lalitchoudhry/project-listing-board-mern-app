@@ -5,7 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import styles from './RegisterBox.module.css';
 
 // import constants
-import { INPUT_FIELD } from '../../data/inputConstants';
+import { SIGNUP_INPUT_FIELD } from '../../data/inputConstants';
 
 // all components imports
 import Input from '../Input/Input';
@@ -61,7 +61,7 @@ function RegisterBox() {
   return (
     <div className={styles.register_box}>
             <form action="post" className={styles.register_form}>
-                {INPUT_FIELD.map((element=><Input
+                {SIGNUP_INPUT_FIELD.map((element=><Input
                   key={element.key}
                   value={inputs[element.name]}
                   {...element}

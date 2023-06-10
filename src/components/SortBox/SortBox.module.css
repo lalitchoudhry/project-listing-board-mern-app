@@ -1,0 +1,61 @@
+.container{
+    border: 3px solid rgba(54, 65, 106, 0.35);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .3em .5em;
+    text-wrap: nowrap;
+}
+.sort_box{
+    display: flex;
+    align-items: center;
+    width: 45%;
+}
+.suggestion{
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 147.2%;
+}
+.sort_btn{
+    margin-left: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 147.2%;
+    color: #8B8B8B;
+    cursor: pointer;
+}
+.sort_btn span{
+    margin-left: .5em;
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 147.2%;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sort_btn span img{
+    margin: .5em;
+}
+
+.btn_box button{
+    border-radius: 7px;
+}
+
+@media screen and (max-width: 450px){
+    .container{
+        margin-bottom: 9em;
+    }
+    .sort_box{
+        width: 100%;
+    }
+}
+/* @media screen and (max-width: 770px){
+    .container{
+        margin-bottom: 6em;
+    }
+} */
