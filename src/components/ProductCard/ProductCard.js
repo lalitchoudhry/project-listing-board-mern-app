@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { v4 as uuid } from 'uuid';
 
 // style import
 import styles from './ProductCard.module.css';
 import Button from '../Button/Button';
+
+// utils import
+import { Context } from '../../utils/context';
+
+// all apis import
+import { updateProduct } from '../../apis/product';
 
 // assets import
 import voteArrowUp from '../../assets/icons/voteArrowUp.png';
@@ -10,65 +17,123 @@ import commentIcon from '../../assets/icons/comment.png';
 import commentWhite from '../../assets/icons/commentWhite.png';
 import sendPlane from '../../assets/icons/plane.png';
 
-function ProductCard() {
+function ProductCard({_id, name, imgUrl, vote, description, comments, category }) {
 
     // all states and variables
-    const [voteCount, setVoteCount] = useState(0);
+    const { auth } = useContext(Context)
+    const [voteCount, setVoteCount] = useState(vote);
     const [showComment, setshowComment] = useState(false);
+    const [commentArray, setCommentArray] = useState(comments);
+    const [input, setInput] = useState({
+        comments: ''
+    })
+    const firstUpdate = useRef(true);
 
     // functions
-    const clickIncreaseVote = ()=>{
+    const clickIncreaseVote = () => {
         setVoteCount(voteCount + 1);
     }
 
-    const handleShowComment = ()=>{
+    const handleShowComment = () => {
         setshowComment(!showComment);
     }
 
-    // useEffects
+    const handleCommentChange = (e)=>{
+        setInput({...input, [e.target.name]: e.target.value})
+    }
 
-  return (
-    <div className={styles.container}>
-        <div className={styles.product_section}>
-            <div className={styles.img_box}>Img</div>
-            <div className={styles.detail_box}>
-                <div className={styles.text_section}>
-                    <h1>name</h1>
-                    <p>description</p>
-                    <div className={styles.category_section}>
-                        <div className={styles.category}>
-                            <div className={styles.category_card}>categories</div>
-                        </div>
-                        <div className={styles.comment_icon} onClick={handleShowComment}>
-                            <img src={commentWhite} alt="" />
-                            <span>Comment</span>
-                        </div>
-                        <Button title="Edit" />
-                    </div>
+    const handlePostComment = ()=>{
+        for (const value in input) {
+            if (input[value].length === 0) {
+              alert("Empty Comment")
+              return;
+            }
+          }
+        updateComment();
+    }
+
+    const updateComment = async()=>{
+        // const auth = JSON.parse(localStorage.getItem("user"));
+        const result = await updateProduct(_id, input);
+        if (!result) {
+          return
+        }
+        setCommentArray([...commentArray, input]);
+        setInput('');
+        // fetchAllProducts();
+    }
+
+    const updateVoteCount = async()=>{
+        let voteBody = {
+            vote: voteCount
+        }
+        const result = await updateProduct(_id, voteBody);
+        if (!result) {
+          return
+        }
+    }
+
+    // useEffects
+    useEffect(()=>{
+        if (firstUpdate.current) {
+            firstUpdate.current = false;
+            return
+        }
+        updateVoteCount()
+    }, [voteCount])
+
+    return (
+        <div className={styles.container}>
+            <div className={styles.product_section}>
+                <div className={styles.img_box}>
+                    <img src={imgUrl} alt="" />
                 </div>
-                <div className={styles.vote_section}>
-                    <div className={styles.vote_btn} onClick={clickIncreaseVote}>
-                        <img src={voteArrowUp} alt="" />
-                        {voteCount}
+                <div className={styles.detail_box}>
+                    <div className={styles.text_section}>
+                        <h1>{name}</h1>
+                        <p>{description}</p>
+                        <div className={styles.category_section}>
+                            {category.map(element => <div key={uuid()} className={styles.category_card}>{element}</div>)}
+
+                            <div className={styles.comment_icon} onClick={()=>handleShowComment(_id)}>
+                                <img src={commentWhite} alt="" />
+                                <span>Comment</span>
+                            </div>
+                            {auth && <div className={styles.btn}>
+                            <Button
+                                title="Edit"
+                            /></div>}
+                        </div>
                     </div>
-                    <div className={styles.comment_count_btn} onClick={handleShowComment}>
-                        <span>4</span>
-                        <img src={commentIcon} alt="" />
+                    <div className={styles.vote_section}>
+                        <div className={styles.vote_btn} onClick={clickIncreaseVote}>
+                            <img src={voteArrowUp} alt="" />
+                            {voteCount}
+                        </div>
+                        <div className={styles.comment_count_btn} onClick={handleShowComment}>
+                            <span>{comments.length}</span>
+                            <img src={commentIcon} alt="" />
+                        </div>
                     </div>
                 </div>
             </div>
+            {showComment && <div className={styles.comment_section}>
+                <div className={styles.input_box}>
+                    <input
+                        name='comments'
+                        value={input.comments}
+                        type="text"
+                        placeholder='Add a comment'
+                        onChange={handleCommentChange}
+                    />
+                    <button onClick={handlePostComment}><img src={sendPlane} alt="" /></button>
+                </div>
+                <ul className={styles.comment_box}>
+                    {commentArray && commentArray.map(comment => <li key={uuid()} >{comment}</li>)}
+                </ul>
+            </div>}
         </div>
-        {showComment && <div className={styles.comment_section}>
-            <div className={styles.input_box}>
-                <input type="text" placeholder='Add a comment'/>
-                <button><img src={sendPlane} alt="" /></button>
-            </div>
-            <ul className={styles.comment_box}>
-                <li>comment</li>
-            </ul>
-        </div>}
-    </div>
-  )
+    )
 }
 
 export default ProductCard;

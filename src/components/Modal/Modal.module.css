@@ -6,7 +6,7 @@
     margin: 0 auto;
     left: 15%;
     background-color: #FFFFFF;
-    border: 2px solid
+    z-index: 2;
 }
 
 .add_product_form h1{

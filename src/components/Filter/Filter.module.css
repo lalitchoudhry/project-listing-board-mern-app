@@ -45,6 +45,10 @@
     background: #36416A;
     color: #FFFFFF;
 }
+.active{
+    background: #36416A;
+    color: #FFFFFF;
+}
 
 @media screen and (max-width: 450px){
     .container{
@@ -55,7 +59,7 @@
     }
     .filter_section{
         position: absolute;
-        bottom: 15%;
+        top: 755px;
         width: 94%;
     }
 }

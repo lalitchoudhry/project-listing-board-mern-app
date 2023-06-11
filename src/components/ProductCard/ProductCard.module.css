@@ -7,10 +7,15 @@
 .product_section{
     display: flex;
 }
+.img_box img{
+    border-radius: 50%;
+    width: 4em;
+}
 .detail_box{
     display: flex;
     justify-content: space-between;
     width: 100%;
+    padding-left: 1em;
 }
 
 .text_section p{ line-height: 147.2%; }
@@ -20,7 +25,13 @@
     font-size: 1.5rem;
     line-height: 147.2%;
 }
-
+.btn{
+    text-align: center;
+    margin: auto 0;
+}
+.btn button{
+    padding: .2em 1.2em;
+}
 .category_section{
     display: flex;
 }
@@ -39,6 +50,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    margin-right: .5em;
 }
 
 .vote_section{

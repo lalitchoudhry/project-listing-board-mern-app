@@ -8,7 +8,7 @@ import Button from '../Button/Button';
 import voteArrowUp from '../../assets/icons/voteArrowUp.png';
 import voteArrowDown from '../../assets/icons/voteArrowDown.png';
 
-function SortBox({toggleAddProductModel}) {
+function SortBox({toggleAddProductModel, toggleSort, products}) {
 
     // all states ans variable
     const [upDownSort, setUpDownSort] = useState(true);
@@ -16,6 +16,7 @@ function SortBox({toggleAddProductModel}) {
     // functions
     const handleSortClick = ()=>{
         setUpDownSort(!upDownSort);
+        toggleSort();
     }
 
     // useEffects
@@ -23,7 +24,7 @@ function SortBox({toggleAddProductModel}) {
   return (
     <div className={styles.container}>
         <div className={styles.sort_box}>
-            <div className={styles.suggestion}>10 Suggestion</div>
+            <div className={styles.suggestion}>{products.length} Suggestion</div>
             <div className={styles.sort_btn}>Sort by: 
                 <span onClick={handleSortClick}>
                     Upvotes {upDownSort?<img src={voteArrowUp} alt=""/>:<img src={voteArrowDown} alt='' />}
