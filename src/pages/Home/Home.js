@@ -41,11 +41,11 @@ function Home() {
   const firstUpdate = useRef(true);
 
   // funtions
-  const toggleSort = () => {
-    if (sort.vote === -1) {
-      setSort({ vote: 1 })
-    } else {
+  const toggleSort = (sortType) => {
+    if (sortType === "Upvotes") {
       setSort({ vote: -1 })
+    } else {
+      setSort({ commentLength: -1 })
     }
   }
 
@@ -104,17 +104,9 @@ function Home() {
     setProducts(result);
   }
 
-  // const handleScroll = ()=>{
-  //   window.addEventListener("scroll", ()=>{
-  //     const offset = window.scrollY;
-  //     console.log(offset)
-  //   })
-  // }
-
   // useEffects
   useEffect(() => {
     fetchAllProducts();
-    // handleScroll()
   }, [])
 
   useEffect(() => {

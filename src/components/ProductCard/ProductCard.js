@@ -17,11 +17,12 @@ import commentIcon from '../../assets/icons/comment.png';
 import commentWhite from '../../assets/icons/commentWhite.png';
 import sendPlane from '../../assets/icons/plane.png';
 
-function ProductCard({_id, name, imgUrl, vote, description, comments, category }) {
+function ProductCard({_id, name, imgUrl, vote, description, comments, category, commentLength }) {
 
     // all states and variables
     const { auth } = useContext(Context)
     const [voteCount, setVoteCount] = useState(vote);
+    const [commentCount, setCommentCount] = useState(commentLength)
     const [showComment, setshowComment] = useState(false);
     const [commentArray, setCommentArray] = useState(comments);
     const [input, setInput] = useState('')
@@ -48,13 +49,14 @@ function ProductCard({_id, name, imgUrl, vote, description, comments, category }
             alert("Invalid comment")
             return
         }
-        updateComment();
+        setCommentCount(commentCount + 1);
     }
 
     const updateComment = async()=>{
         // const auth = JSON.parse(localStorage.getItem("user"));
         let commentBody = {
-            comments: input
+            comments: input,
+            commentLength: commentCount
         }
         const result = await updateProduct(_id, commentBody);
         if (!result) {
@@ -83,6 +85,14 @@ function ProductCard({_id, name, imgUrl, vote, description, comments, category }
         }
         updateVoteCount()
     }, [voteCount])
+
+    useEffect(()=>{
+        if (firstUpdate.current) {
+            firstUpdate.current = false;
+            return
+        }
+        updateComment()
+    }, [commentCount])
 
     return (
         <div className={styles.container}>
@@ -114,7 +124,7 @@ function ProductCard({_id, name, imgUrl, vote, description, comments, category }
                             {voteCount}
                         </div>
                         <div className={styles.comment_count_btn} onClick={handleShowComment}>
-                            <span>{comments.length}</span>
+                            <span>{commentLength}</span>
                             <img src={commentIcon} alt="" />
                         </div>
                     </div>
