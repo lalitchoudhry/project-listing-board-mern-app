@@ -11,7 +11,7 @@ import Input from '../Input/Input';
 import Button from '../Button/Button';
 import FeedbackBanner from '../FeedbackBanner/FeedbackBanner';
 
-function AddProductModel({ modalTitle, inputFields, btnTitle, input, setInput, toggleLoginModal, submit, setShowModal }) {
+function AddProductModel({ modalTitle, inputFields, btnTitle, input, setInput, toggleLoginModal, submit, setShowModal, toggleModal }) {
 
   // all states and variables
   const [error, setError] = useState(false);
@@ -37,6 +37,7 @@ function AddProductModel({ modalTitle, inputFields, btnTitle, input, setInput, t
 
   return (
     <div className={styles.container}>
+      <button className={styles.cross_btn} onClick={toggleModal}>x</button>
       <form className={styles.add_product_form}>
         <h1>{modalTitle}</h1>
         {inputFields.map((element => <Input

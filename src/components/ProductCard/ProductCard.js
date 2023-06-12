@@ -24,12 +24,13 @@ function ProductCard({_id, name, imgUrl, vote, description, comments, category }
     const [voteCount, setVoteCount] = useState(vote);
     const [showComment, setshowComment] = useState(false);
     const [commentArray, setCommentArray] = useState(comments);
-    const [input, setInput] = useState({
-        comments: ''
-    })
+    const [input, setInput] = useState('')
     const firstUpdate = useRef(true);
 
     // functions
+    const handleEdit = ()=>{
+        alert("There is no explanation about edit button, So yet to be completed edit function")
+    }
     const clickIncreaseVote = () => {
         setVoteCount(voteCount + 1);
     }
@@ -39,22 +40,23 @@ function ProductCard({_id, name, imgUrl, vote, description, comments, category }
     }
 
     const handleCommentChange = (e)=>{
-        setInput({...input, [e.target.name]: e.target.value})
+        setInput(e.target.value)
     }
 
     const handlePostComment = ()=>{
-        for (const value in input) {
-            if (input[value].length === 0) {
-              alert("Empty Comment")
-              return;
-            }
-          }
+        if (input === "" || input === ' ') {
+            alert("Invalid comment")
+            return
+        }
         updateComment();
     }
 
     const updateComment = async()=>{
         // const auth = JSON.parse(localStorage.getItem("user"));
-        const result = await updateProduct(_id, input);
+        let commentBody = {
+            comments: input
+        }
+        const result = await updateProduct(_id, commentBody);
         if (!result) {
           return
         }
@@ -102,6 +104,7 @@ function ProductCard({_id, name, imgUrl, vote, description, comments, category }
                             {auth && <div className={styles.btn}>
                             <Button
                                 title="Edit"
+                                handleSubmit={handleEdit}
                             /></div>}
                         </div>
                     </div>
@@ -121,7 +124,7 @@ function ProductCard({_id, name, imgUrl, vote, description, comments, category }
                 <div className={styles.input_box}>
                     <input
                         name='comments'
-                        value={input.comments}
+                        value={input}
                         type="text"
                         placeholder='Add a comment'
                         onChange={handleCommentChange}

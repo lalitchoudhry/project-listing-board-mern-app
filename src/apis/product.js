@@ -68,13 +68,8 @@ export const updateProduct = async (id, productData)=>{
             method: "PUT",
             headers: {
                 "content-type": "application/json",
-                "Access-Control-Allow-Origin": "http://localhost:3000",
-                "Access-Control-Allow-Credentials": "true",
-                "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
-                "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-    
             },
-            body: productData
+            body: JSON.stringify(productData)
         })
         .then(async (response)=>{
             if (response.status === 201) return await response.json();

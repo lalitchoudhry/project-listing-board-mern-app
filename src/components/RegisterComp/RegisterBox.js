@@ -35,7 +35,6 @@ function RegisterBox() {
         return;
       }
     }
-    console.log(signupInput)
     registerUserData();
   }
 

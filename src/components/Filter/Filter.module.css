@@ -63,3 +63,13 @@
         width: 94%;
     }
 }
+@media screen and (max-width: 380px){
+    .filter_section{
+        top: 720px;
+    }
+}
+@media screen and (max-width: 350px){
+    .filter_section{
+        top: 610px;
+    }
+}

@@ -25,6 +25,8 @@
     margin-top: 1em;
     display: flex;
     flex-direction: column;
+    height: 640px;
+    overflow-y: scroll;
     /* align-items: center;
     justify-content: center; */
 }

@@ -8,6 +8,16 @@
     background-color: #FFFFFF;
     z-index: 2;
 }
+.cross_btn{
+    position: absolute;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+    right: 1%;
+    top: -1%;
+    color: #7381b8;
+}
 
 .add_product_form h1{
     margin-bottom: 1em;

@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 
 // style imports
@@ -25,7 +24,6 @@ import Modal from '../../components/Modal/Modal';
 function Home() {
 
   // all states and variable
-  const navigate = useNavigate();
   const { signupInput, setSignupInput, loginInput, setLoginInput, registerUserData, loginUserData } = useContext(Context);
   const [showAddProductModel, setShowAddProductModel] = useState(false);
   const [showSignupModal, setShowsignupModal] = useState(false);
@@ -52,6 +50,10 @@ function Home() {
   }
 
   const toggleAddProductModel = () => {
+    window.scrollTo({
+      top: 0, 
+      behavior: 'smooth'
+    });
     const auth = JSON.parse(localStorage.getItem("user"));
     if (!auth) {
       setShowsignupModal(!showSignupModal);
@@ -63,7 +65,7 @@ function Home() {
   const toggleLoginModal = () => {
     setShowAddProductModel(false);
     setShowsignupModal(false);
-    setShowLoginModal(true);
+    setShowLoginModal(!showLoginModal);
   }
 
   const handleAddProduct = async () => {
@@ -81,7 +83,7 @@ function Home() {
       return;
     }
     setShowAddProductModel(!showAddProductModel);
-    navigate("/");
+    fetchAllProducts();
   }
 
   const fetchAllProducts = async () => {
@@ -102,9 +104,17 @@ function Home() {
     setProducts(result);
   }
 
+  // const handleScroll = ()=>{
+  //   window.addEventListener("scroll", ()=>{
+  //     const offset = window.scrollY;
+  //     console.log(offset)
+  //   })
+  // }
+
   // useEffects
   useEffect(() => {
     fetchAllProducts();
+    // handleScroll()
   }, [])
 
   useEffect(() => {
@@ -146,7 +156,8 @@ function Home() {
         setInput={setAddProductInputs}
         submit={handleAddProduct}
         setShowModal={setShowAddProductModel}
-      />}
+        toggleModal={toggleAddProductModel}
+        />}
       {showSignupModal && <Modal
         modalTitle="Signup to continue"
         inputFields={SIGNUP_INPUT_FIELD}
@@ -156,7 +167,8 @@ function Home() {
         toggleLoginModal={toggleLoginModal}
         submit={registerUserData}
         setShowModal={setShowsignupModal}
-      />}
+        toggleModal={toggleAddProductModel}
+        />}
       {showLoginModal && <Modal
         modalTitle="Login to continue"
         inputFields={LOGIN_INPUT_FIELD}
@@ -165,7 +177,8 @@ function Home() {
         setInput={setLoginInput}
         submit={loginUserData}
         setShowModal={setShowLoginModal}
-      />}
+        toggleModal={toggleLoginModal}
+        />}
     </div>
   )
 }
