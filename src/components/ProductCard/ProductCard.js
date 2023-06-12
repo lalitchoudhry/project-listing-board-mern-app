@@ -60,7 +60,7 @@ function ProductCard({_id, name, imgUrl, vote, description, comments, category }
         if (!result) {
           return
         }
-        setCommentArray([...commentArray, input]);
+        setCommentArray([input, ...commentArray]);
         setInput('');
         // fetchAllProducts();
     }
