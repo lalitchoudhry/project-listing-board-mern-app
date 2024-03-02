@@ -20,6 +20,10 @@ This is Fullstack app where I used Reactjs as frontend and for backend I used No
 
 **Server:** Node, Express, MongoDB
 
+## Demo
+
+![](https://github.com/lalitchoudhry/project-listing-board-mern-app/blob/master/src/assets/images/mern-project-listing-bord-gif.gif)
+
 
 ## Authors
 
